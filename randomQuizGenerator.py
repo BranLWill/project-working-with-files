@@ -4,6 +4,10 @@
 
 import random, os
 
+# Creating The Folders for Quizzes and answers keys
+os.makedir("./answers", exist_ok=True)
+os.makedir("./quizzes", exist_ok=True)
+
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Arkansas': 'Little Rock', 'California': 'Sacramento', 'Colorado': 'Denver',
@@ -22,6 +26,33 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Nashville', 'Texas': 'Austin', 'Utah': 'Salt Lake City', 'Vermont':
             'Montpelier', 'Virginia': 'Richmond', 'Washington': 'Olympia', 'West Virginia': 
             'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
+
+for quizNum in range(5):
+            quizFile = open('./quizzes/capitolsquiz%s.txt' % (quizNum + 1), 'w')
+            answerFile = open('./answers/capitolsquiz_answers%s.txt' % (quizNum + 1), 'w')
+            quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
+            quizFile.write((' ' * 20) + 'State Capitals Quiz (Form%s)' % (quizNum + 1))
+            quizFile.write('\n\n')
+            states = list(capitals.keys())
+            random.shuffle(states)
+            
+# Looping through all the 50 states and making a question for each one.
+for questionNum in range(50):
+            correctAnswer = capitals[states[questionNum]]
+            wrongAnswers = list(capitals.value())
+            del wrongAnswers[wrongAnswers.index(correctAnswer)]
+            wrongAnswers = random.sample(wrongAnswers, 3)
+            answerOption = wrongAnswers + [correctAnswer]
+            random.shuffle(answerOption)
+
+# Writing the questions and answers options to the quiz file
+quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
+for i in range(4):
+            quizFile.write('$s. %s\n' % ('ABCD'[i], answerOption[i]))
+quizFile.write('\n')
+answerFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOption.index(correctAnswer)]))
+quizFile.close()
+answerFile.close()
 
             #TODO: follow the 'generating random quiz files' project in the textbook to fill in this file.
             #TODO: however, make the following modificatiosn to the instructions on the textbook:
