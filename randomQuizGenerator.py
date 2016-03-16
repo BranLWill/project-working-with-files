@@ -5,8 +5,8 @@
 import random, os
 
 # Creating The Folders for Quizzes and answers keys
-os.mkdir("./answers", exist_ok=True)
-os.mkdir("./quizzes", exist_ok=True)
+os.makedirs(os.path.join('./answers'), exist_ok=True)
+os.makedirs(os.path.join('./quizzes'), exist_ok=True)
 
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
@@ -27,7 +27,7 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Montpelier', 'Virginia': 'Richmond', 'Washington': 'Olympia', 'West Virginia': 
             'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
 
-for quizNum in range(35):
+for quizNum in range(5):
     quizFile = open('capitalsquiz%s.txt' % (quizNum + 1), 'w')
     answerKeyFile = open('capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
 
@@ -66,4 +66,5 @@ answerKeyFile.close()
             #       4. plaec the corresponding answers in the 'answers' directory.
             
             
+
 
