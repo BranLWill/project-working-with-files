@@ -5,8 +5,8 @@
 import random, os
 
 # Creating The Folders for Quizzes and answers keys
-os.makedir(os.path.join('./answers'), exist_ok=True)
-os.makedir(os.path.join('./quizzes'), exist_ok=True)
+os.makedir('./answers', exist_ok=True)
+os.makedir('./quizzes', exist_ok=True)
 
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
@@ -28,31 +28,35 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
 
 for quizNum in range(5):
-            quizFile = open('./quizzes/capitolsquiz%s.txt' % (quizNum + 1), 'w')
-            answerFile = open('./answers/capitolsquiz_answers%s.txt' % (quizNum + 1), 'w')
-            quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
-            quizFile.write((' ' * 20) + 'State Capitals Quiz (Form%s)' % (quizNum + 1))
-            quizFile.write('\n\n')
-            states = list(capitals.keys())
-            random.shuffle(states)
+    quizFile = open('./quizzes/capitalsquiz%s.txt' % (quizNum + 1), 'w')
+    answerKeyFile = open('./answers/capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
+
+    quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
+    quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
+    quizFile.write('\n\n')
+
+    states = list(capitals.keys())
+    random.shuffle(states)
             
 # Looping through all the 50 states and making a question for each one.
 for questionNum in range(50):
-            correctAnswer = capitals[states[questionNum]]
-            wrongAnswers = list(capitals.value())
-            del wrongAnswers[wrongAnswers.index(correctAnswer)]
-            wrongAnswers = random.sample(wrongAnswers, 3)
-            answerOption = wrongAnswers + [correctAnswer]
-            random.shuffle(answerOption)
+    correctAnswer = capitals[states[questionNum]]
+    wrongAnswers = list(capitals.values())
+    del wrongAnswers[wrongAnswers.index(correctAnswer)]
+    wrongAnswers = random.sample(wrongAnswers, 3)
+    answerOptions = wrongAnswers + [correctAnswer]
+    random.shuffle(answerOptions)
 
 # Writing the questions and answers options to the quiz file
 quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
 for i in range(4):
-            quizFile.write('$s. %s\n' % ('ABCD'[i], answerOption[i]))
+    quizFile.write(' $s. %s\n' % ('ABCD'[i], answerOptions[i]))
 quizFile.write('\n')
-answerFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOption.index(correctAnswer)]))
+
+answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOption.index(correctAnswer)]))
+
 quizFile.close()
-answerFile.close()
+answerKeyFile.close()
 
             #TODO: follow the 'generating random quiz files' project in the textbook to fill in this file.
             #TODO: however, make the following modificatiosn to the instructions on the textbook:
@@ -62,4 +66,3 @@ answerFile.close()
             #       4. plaec the corresponding answers in the 'answers' directory.
             
             
-
