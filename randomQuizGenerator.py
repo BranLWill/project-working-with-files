@@ -4,6 +4,10 @@
 
 import random, os
 
+# Creating The Folders for Quizzes and answers keys
+os.makedirs("./answers", exist_ok=True)
+os.makedirs("./quizzes", exist_ok=True)
+
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Arkansas': 'Little Rock', 'California': 'Sacramento', 'Colorado': 'Denver',
@@ -23,6 +27,37 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Montpelier', 'Virginia': 'Richmond', 'Washington': 'Olympia', 'West Virginia': 
             'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
 
+for quizNum in range(5):
+    quizFile = open('capitalsquiz%s.txt' % (quizNum + 1), 'w')
+    answerKeyFile = open('capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
+
+    quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
+    quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
+    quizFile.write('\n\n')
+
+    states = list(capitals.keys())
+    random.shuffle(states)
+            
+# Looping through all the 50 states and making a question for each one.
+for questionNum in range(50):
+    correctAnswer = capitals[states[questionNum]]
+    wrongAnswers = list(capitals.values())
+    del wrongAnswers[wrongAnswers.index(correctAnswer)]
+    wrongAnswers = random.sample(wrongAnswers, 3)
+    answerOptions = wrongAnswers + [correctAnswer]
+    random.shuffle(answerOptions)
+
+# Writing the questions and answers options to the quiz file
+quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
+for i in range(4):
+    quizFile.write(' %s. %s\n' % ('ABCD'[i], answerOptions[i]))
+    quizFile.write('\n')
+
+           # Write the answer key to a file.
+answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOptions.index(correctAnswer)]))
+quizFile.close()
+answerKeyFile.close()
+
             #TODO: follow the 'generating random quiz files' project in the textbook to fill in this file.
             #TODO: however, make the following modificatiosn to the instructions on the textbook:
             #       1. instead of making 35 quiz versions, you'll only make 5 quiz versions
@@ -31,3 +66,4 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             #       4. plaec the corresponding answers in the 'answers' directory.
             
             
+
