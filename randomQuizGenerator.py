@@ -5,8 +5,8 @@
 import random, os
 
 # Creating The Folders for Quizzes and answers keys
-os.mkdir('./answers', exist_ok=True)
-os.mkdir('./quizzes', exist_ok=True)
+os.mkdir("./answers", exist_ok=True)
+os.mkdir("./quizzes", exist_ok=True)
 
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
@@ -27,9 +27,9 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
             'Montpelier', 'Virginia': 'Richmond', 'Washington': 'Olympia', 'West Virginia': 
             'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
 
-for quizNum in range(5):
-    quizFile = open('./quizzes/capitalsquiz%s.txt' % (quizNum + 1), 'w')
-    answerKeyFile = open('./answers/capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
+for quizNum in range(35):
+    quizFile = open('capitalsquiz%s.txt' % (quizNum + 1), 'w')
+    answerKeyFile = open('capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
 
     quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
     quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
@@ -50,11 +50,11 @@ for questionNum in range(50):
 # Writing the questions and answers options to the quiz file
 quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
 for i in range(4):
-    quizFile.write(' $s. %s\n' % ('ABCD'[i], answerOptions[i]))
-quizFile.write('\n')
+    quizFile.write(' %s. %s\n' % ('ABCD'[i], answerOptions[i]))
+    quizFile.write('\n')
 
-answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOption.index(correctAnswer)]))
-
+           # Write the answer key to a file.
+answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOptions.index(correctAnswer)]))
 quizFile.close()
 answerKeyFile.close()
 
@@ -66,3 +66,4 @@ answerKeyFile.close()
             #       4. plaec the corresponding answers in the 'answers' directory.
             
             
+
