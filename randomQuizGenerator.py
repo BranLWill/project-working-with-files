@@ -5,10 +5,9 @@
 import random, os
 
 # Creating The Folders for Quizzes and answers keys
-answerPath = ('./answers')
-quizPath = ('./quizzes')
-os.makedirs('answerPath'), exist_ok=True)
-os.makedirs('quizPath'), exist_ok=True)
+
+os.makedirs('C:\\answers'), exist_ok=True)
+os.makedirs('C:\\quizzes'), exist_ok=True)
 
 # The quiz data. Keys are states and values are their capitals.
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
