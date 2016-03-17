@@ -30,14 +30,11 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
 
 # Looping through all the different forms of quizzes.
 for quizNum in range(5):
-
     quizFile = open('./quizzes/capitalsquiz%s.txt' % (quizNum + 1), 'w')
     answerKeyFile = open('./answers/capitalsquiz_answers%s.txt' % (quizNum + 1), 'w')
-
     quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
     quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
     quizFile.write('\n\n')
-
     states = list(capitals.keys())
     random.shuffle(states)
             
@@ -55,7 +52,6 @@ for questionNum in range(50):
 
     for i in range(4):
         quizFile.write('%s. %s\n' % ('ABCD'[i], answerOptions[i]))
-
         quizFile.write('\n')
     answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOptions.index(correctAnswer)]))
 
