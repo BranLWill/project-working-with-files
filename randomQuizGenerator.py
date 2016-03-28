@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  # Brandon Willett
  #! python3
  # randomQuizGenerator.py - Creates quizzes with questions and answers in
@@ -5,6 +6,14 @@
   
   import random, os
 
+=======
+# Brandon Willett
+# randomQuizGenerator.py - Creates quizzes with questions and answers in
+# random order, along with the answer key.
+
+import random, os
+
+>>>>>>> origin/Update-Files-Generator
 os.makedirs('./answers'), exist_ok=True)
 os.makedirs('./quizzes'), exist_ok=True)
   
@@ -30,13 +39,18 @@ os.makedirs('./quizzes'), exist_ok=True)
 for quizNum in range(5):
     quizFile = open(os.path.join('quizzes','capitalsquiz%s.txt' % (quizNum + 1)), 'w')
     answerKeyFile = open(os.path.join('answers','capitalsquiz_answers%s.txt' % (quizNum + 1)), 'w')
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> origin/Update-Files-Generator
     quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
     quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
     quizFile.write('\n\n')
 
     states = list(capitals.keys())
     random.shuffle(states)
+<<<<<<< HEAD
              
  # Looping through all the 50 states and making a question for each one.
  for questionNum in range(50):
@@ -67,6 +81,35 @@ for quizNum in range(5):
              
              
  
+=======
             
+# Looping through all the 50 states and making a question for each one.
+for questionNum in range(50):
+    correctAnswer = capitals[states[questionNum]]
+    wrongAnswers = list(capitals.values())
+    del wrongAnswers[wrongAnswers.index(correctAnswer)]
+    wrongAnswers = random.sample(wrongAnswers, 3)
+    answerOptions = wrongAnswers + [correctAnswer]
+    random.shuffle(answerOptions)
 
+# Writing the questions and answers options to the quiz file
+    quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
+    for i in range(4):
+        quizFile.write(' %s. %s\n' % ('ABCD'[i], answerOptions[i]))
+        quizFile.write('\n')
+
+           # Write the answer key to a file.
+    answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOptions.index(correctAnswer)]))
+quizFile.close()
+answerKeyFile.close()
+
+            #TODO: follow the 'generating random quiz files' project in the textbook to fill in this file.
+            #TODO: however, make the following modificatiosn to the instructions on the textbook:
+            #       1. instead of making 35 quiz versions, you'll only make 5 quiz versions
+            #       2. instead of creating quiz and answer files in the current working directory, create a folder titled 'quizzes' and another folder titled 'answers'.
+            #       3. place the randomly-generated quizzes in the 'quizzes' directory.
+            #       4. plaec the corresponding answers in the 'answers' directory.
+            
+>>>>>>> origin/Update-Files-Generator
+            
 
