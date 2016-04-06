@@ -4,8 +4,8 @@
 # random order, along with the answer key.
   
 import random, os
-os.makedirs(os.join.path('answers'), exist_ok=True)
-os.makedirs(os.join.path('quizzes'), exist_ok=True)
+os.makedirs(os.join('answers'), exist_ok=True)
+os.makedirs(os.join('quizzes'), exist_ok=True)
   
   # The quiz data. Keys are states and values are their capitals.
   capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
@@ -27,8 +27,8 @@ os.makedirs(os.join.path('quizzes'), exist_ok=True)
               'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}
   
 for quizNum in range(5):
-    quizFile = open(os.path.join('quizzes','capitalsquiz%s.txt' % (quizNum + 1)), 'w')
-    answerKeyFile = open(os.path.join('answers','capitalsquiz_answers%s.txt' % (quizNum + 1)), 'w')
+    quizFile = open(os.join('quizzes','capitalsquiz%s.txt' % (quizNum + 1)), 'w')
+    answerKeyFile = open(os.join('answers','capitalsquiz_answers%s.txt' % (quizNum + 1)), 'w')
     
     quizFile.write('Name:\n\nDate:\n\nPeriod:\n\n')
     quizFile.write((' ' * 20) + 'State Capitals Quiz (Form %s)' % (quizNum + 1))
