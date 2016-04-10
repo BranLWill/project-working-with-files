@@ -4,8 +4,8 @@
 # random order, along with the answer key.
   
 import random, os
-os.makedirs(os.join('answers'), exist_ok=True)
-os.makedirs(os.join('quizzes'), exist_ok=True)
+os.makedirs('answers')
+os.makedirs('quizzes')
   
   # The quiz data. Keys are states and values are their capitals.
   capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
